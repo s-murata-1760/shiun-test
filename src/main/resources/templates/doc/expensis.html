@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+</head>
+<body>
+	
+	<form action="/expensis/create" method="post">
+		<table border="1">
+			<tr>
+				<th>項目</th><th>名前</th><th>価格</th><th>日付</th>
+			</tr>
+			<tr>
+				<td>
+					<select name="category" id="category">
+					  <option value="food">食費</option>
+					  <option value="goods">日用品</option>
+					  <option value="society">交際費</option>
+					  <option value="traffic">交通費</option>
+					  <option value="medical">医療費</option>
+					  <option value="beauty">美容費</option>
+					  <option value="other">そのほか</option>
+					</select>
+				</td>
+				<td><input type="text" name="name"></td>
+				<td><input type="text" name="price"></td>
+				<td><input type="text" name="date"></td>
+			</tr>
+		</table>
+		
+		<input type="submit" value="追加" >
+	</form>
+
+	
+	<br>
+	<br>
+	
+		<table border="1">
+		<tr>
+			<th colspan="5">総支出:40000</th>
+		</tr>
+		<tr>
+			<th>項目</th>
+			<th>名前</th>
+			<th>価格</th>
+			<th>
+				編集
+			</th>
+			<th>
+				削除
+			</th>
+		</tr>
+	
+		<tr th:each="expense:${expensis}">
+			<td >
+			食費
+			</td>
+			<td th:text="${expense.expensisName}">
+				
+			</td >
+			<td th:text="${expense.expensisMoney}">
+				
+			</td>
+			<td>
+				<form action="incomeEdit">
+					<input type="hidden" value="income_id" >
+					<input type="submit" value="編集">
+				</form>
+			</td>
+			<td>
+				<form action="incomeDelete">
+					<input type="hidden" value="income_id" >
+					<input type="submit" value="削除">
+				</form>
+			</td>
+		</tr>
+	</table>
+	
+	<div style="width:500px;" >
+    <canvas id="chart"></canvas>
+  </div>
+	
+  <script>
+  var ctx = document.getElementById("chart");
+  var myLineChart = new Chart(ctx, {
+    // グラフの種類：折れ線グラフを指定
+    type: 'line',
+    data: {
+      // x軸の各メモリ
+      labels: ['8月', '9月', '10月', '11月', '12月', '1月', '2月'],
+      datasets: [
+        {
+          label: '資産推移',
+          data: [36, 26, 31, 25, 30, 22, 27, 26],
+          borderColor: "#ec4343",
+          backgroundColor: "#00000000"
+        }
+      ],
+    },
+    options: {
+      title: {
+        display: true,
+        text: ''
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            suggestedMax: 40,
+            suggestedMin: 15,
+            stepSize: 10,  // 縦メモリのステップ数
+            callback: function(value, index, values){
+              return  value +  '万円'  // 各メモリのステップごとの表記（valueは各ステップの値）
+            }
+          }
+        }]
+      },
+    }
+  });
+  
+  
+  </script>
+	
+	
+</body>
+</html>
