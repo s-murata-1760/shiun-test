@@ -36,8 +36,6 @@ public class Expensis {
 		
 	}
 	
-	
-
 	public Expensis(Integer userId, 
 			String expensisName, 
 			Integer expensisMoney,
@@ -115,7 +113,4 @@ public class Expensis {
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
-
-	
-	
 }

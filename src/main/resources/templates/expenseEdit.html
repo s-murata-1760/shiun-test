@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>顧客管理</title>
+</head>
+<body>
+
+<h1>顧客一覧</h1>
+
+<form action="/expensis/update" method="post">
+	<input type="hidden" th:value="${expense.expensisId}" name="expensisId">
+	<table border="1">
+	<tr>
+		<th>項目</th>
+		<th>名前</th>
+		<th>価格</th>
+		<th>日付</th>
+	</tr>
+	<tr>
+		<td>
+			<select name="category" id="category">
+			  <option value="1">食費</option>
+			  <option value="2">日用品</option>
+			  <option value="3">交際費</option>
+			  <option value="4">交通費</option>
+			  <option value="5">医療費</option>
+			  <option value="6">美容費</option>
+			  <option value="7">そのほか</option>
+			</select>
+		</td>
+		<td><input type="text" name="name" th:value="${expense.expensisName}"></td>
+		<td><input type="text" name="price" th:value="${expense.expensisMoney}"></td>
+		<td>
+		<input type="date" name="date">
+       </td>
+	</tr> 
+</table>
+
+<input type="submit" value="更新">
+</form>
+
+<br>
+<a href="/users/new">新規登録</a>
+
+</body>
+</html>

@@ -27,7 +27,9 @@
 				</td>
 				<td><input type="text" name="name"></td>
 				<td><input type="text" name="price"></td>
-				<td><input type="text" name="date"></td>
+				<td>
+					<input type="date" name="date" value="2022-05-19">
+				</td>
 			</tr>
 		</table>
 		
@@ -46,6 +48,7 @@
 			<th>項目</th>
 			<th>名前</th>
 			<th>価格</th>
+			<th>日付</th>
 			<th>
 				編集
 			</th>
@@ -64,16 +67,24 @@
 			<td th:text="${expense.expensisMoney}">
 				
 			</td>
-			<td>
-				<form action="incomeEdit">
-					<input type="hidden" value="income_id" >
-					<input type="submit" value="編集">
-				</form>
+			<td th:text="${expense.expensisDate}">
+				
 			</td>
 			<td>
-				<form action="incomeDelete">
-					<input type="hidden" value="income_id" >
+				<form th:action="'/expense/' + ${expense.expensisId} + '/edit'">
+				<input type="hidden" th:value="${expense.expensisId}" >
+				 <input type="submit" value="更新">
+			</form>
+		<!-- 		<form action="expenseEdit">
+					<input type="hidden" th:value="${expense.expensisId}" >
+					<input type="submit" value="編集">
+				</form> -->
+			</td>
+			<td>
+				<form action="/expensis/delete" method="get">
+					<input type="hidden" th:value="${expense.expensisId}" name="expensis_id" >
 					<input type="submit" value="削除">
+					
 				</form>
 			</td>
 		</tr>
