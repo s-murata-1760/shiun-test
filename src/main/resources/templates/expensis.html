@@ -16,13 +16,13 @@
 			<tr>
 				<td>
 					<select name="category" id="category">
-					  <option value="food">食費</option>
-					  <option value="goods">日用品</option>
-					  <option value="society">交際費</option>
-					  <option value="traffic">交通費</option>
-					  <option value="medical">医療費</option>
-					  <option value="beauty">美容費</option>
-					  <option value="other">そのほか</option>
+					  <option value="1">食費</option>
+					  <option value="2">日用品</option>
+					  <option value="3">交際費</option>
+					  <option value="4">交通費</option>
+					  <option value="5">医療費</option>
+					  <option value="6">美容費</option>
+					  <option value="7">そのほか</option>
 					</select>
 				</td>
 				<td><input type="text" name="name"></td>
@@ -41,7 +41,7 @@
 	
 		<table border="1">
 		<tr>
-			<th colspan="5">総支出:40000</th>
+			<th colspan="5">総支出:<span th:text="${sum}"></span></th>
 		</tr>
 		<tr>
 			<th>項目</th>

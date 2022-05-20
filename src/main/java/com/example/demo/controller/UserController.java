@@ -35,6 +35,7 @@ public class UserController {
 			mv.setViewName("index");
 			return mv;
 		} else {
+			session.setAttribute("user", user);
 			mv.setViewName("top");
 			return mv;
 		}

@@ -20,6 +20,10 @@
 	<tr>
 		<td>
 			<select name="category" id="category">
+			<option th:each="category : ${categories}"
+			th:value="${category.categoryId}"
+			th:text="${category.categoryName}"
+			th:selected="${category.categoryId} == ${expense.categoryId}"></option>
 			  <option value="1">食費</option>
 			  <option value="2">日用品</option>
 			  <option value="3">交際費</option>
