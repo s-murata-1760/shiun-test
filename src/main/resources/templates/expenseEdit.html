@@ -32,7 +32,7 @@
 		<td><input type="text" name="name" th:value="${expense.expensisName}"></td>
 		<td><input type="text" name="price" th:value="${expense.expensisMoney}"></td>
 		<td>
-		<input type="date" name="date">
+		<input type="date" name="date" th:value="${expense.getInputValue()}">
        </td>
 	</tr> 
 </table>

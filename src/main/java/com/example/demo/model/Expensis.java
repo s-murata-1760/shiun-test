@@ -92,7 +92,13 @@ public class Expensis {
 	}
 
 	public String getExpensisDate() {
-		return expensisDate;
+	        String date = expensisDate.substring(0, 4) + "/" + expensisDate.substring(4, 6) + "/" + expensisDate.substring(6, 8);
+		return date;
+	}
+	
+	public String getInputValue() {
+        String date = expensisDate.substring(0, 4) + "-" + expensisDate.substring(4, 6) + "-" + expensisDate.substring(6, 8);
+	return date;
 	}
 
 	public void setExpensisDate(String expensisDate) {
