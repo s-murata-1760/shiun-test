@@ -6,55 +6,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name="expensis")
+@Table(name = "expensis")
 public class Expensis {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="expensis_id")
+	@Column(name = "expensis_id")
 	private Integer expensisId;
-	
-	@Column(name="user_id")
+
+	@Column(name = "user_id")
 	private Integer userId;
-	
-	@Column(name="expensis_name")
+
+	@Column(name = "expensis_name")
 	private String expensisName;
-	
-	@Column(name="expensis_money")
+
+	@Column(name = "expensis_money")
 	private Integer expensisMoney;
-	
-	@Column(name="expensis_date")
+
+	@Column(name = "expensis_date")
 	private String expensisDate;
-	 
-	
-	@Column(name="category_id")
+
+	@Column(name = "category_id")
 	private Integer categoryId;
-	
+
+	@Transient
+	private String categoryName;
+
 	public Expensis() {
-		
+
 	}
-	
-	public Expensis(Integer userId, 
-			String expensisName, 
-			Integer expensisMoney,
-			String expensisDate,
-			Integer categoryId) {
-		super();
-		this.userId = userId;
-		this.expensisName = expensisName;
-		this.expensisMoney = expensisMoney;
-		this.expensisDate = expensisDate;
-		this.categoryId = categoryId;
-	}
-	
-	public Expensis(
-			Integer expensisId,
-			Integer userId, 
-			String expensisName, 
-			Integer expensisMoney,
-			String expensisDate,
+
+	public Expensis(Integer userId, String expensisName, Integer expensisMoney, String expensisDate,
 			Integer categoryId) {
 		super();
 		this.userId = userId;
@@ -64,7 +49,15 @@ public class Expensis {
 		this.categoryId = categoryId;
 	}
 
-
+	public Expensis(Integer expensisId, Integer userId, String expensisName, Integer expensisMoney, String expensisDate,
+			Integer categoryId) {
+		super();
+		this.userId = userId;
+		this.expensisName = expensisName;
+		this.expensisMoney = expensisMoney;
+		this.expensisDate = expensisDate;
+		this.categoryId = categoryId;
+	}
 
 	public Integer getExpensisId() {
 		return expensisId;
@@ -113,4 +106,13 @@ public class Expensis {
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
 }

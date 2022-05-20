@@ -58,7 +58,7 @@
 		</tr>
 	
 		<tr th:each="expense:${expensis}">
-			<td >
+			<td th:text="${expense.categoryName}" >
 			食費
 			</td>
 			<td th:text="${expense.expensisName}">

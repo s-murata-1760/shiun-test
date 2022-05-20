@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.model.Category;
 import com.example.demo.model.Expensis;
+import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.ExpensisRepository;
 
 @Controller
@@ -18,11 +20,17 @@ public class ExpensisController {
 	@Autowired
 	ExpensisRepository expensisRepository;
 
+	@Autowired
+	CategoryRepository categoryRepository;
+
 	@RequestMapping("/expensis")
 	public ModelAndView index(ModelAndView mv) {
 
 		List<Expensis> expensis = expensisRepository.findAll();
-
+		for (Expensis e : expensis) {
+			Category category = categoryRepository.findByCategoryId(e.getCategoryId());
+			e.setCategoryName(category.getCategoryName());
+		}
 		mv.addObject("expensis", expensis);
 		mv.setViewName("expensis");
 
@@ -34,7 +42,7 @@ public class ExpensisController {
 			@RequestParam(name = "name", defaultValue = "") String name,
 			@RequestParam(name = "date", defaultValue = "") String date,
 			@RequestParam(name = "price", defaultValue = "") Integer price, ModelAndView mv) {
-
+		date = date.replaceAll("-", "");
 		Expensis t = new Expensis(1, name, price, date, 1);
 
 		expensisRepository.saveAndFlush(t);
